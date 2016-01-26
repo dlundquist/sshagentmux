@@ -1,0 +1,27 @@
+User SSH agent multiplexer
+
+- [ ] can enumerate identities `ssh-add -l`
+- [ ] enumerated identities includes all identities from default (user's) agent
+- [ ] enumerated identities includes all identities from alternate agent
+- [ ] can add identity
+- [ ] added identity added to default agent
+- [ ] can delete identity from defualt agent
+- [ ] can not delete identity from alternate agent
+- [ ] can login to server using identity from default agent
+- [ ] can login to server using identity from alternate agent
+- [ ] logs user, requesting command and identity on each use of identity from
+      alternate agent
+- [ ] terminates at logout
+- [ ] handles no forwarded SSH agent case
+- [ ] handles alternate agent restart (assuming same agent socket path)
+- [ ] handles default agent timeout (user ignores prompt for identity
+      pass-phrase)
+- [ ] logs duplicate identities
+
+Admin SSH agent multiplexer
+
+- [x] allows configuration of listening agent socket
+- [x] accepts connections from users other than user running agent
+- [x] enumerates only identities user has access to
+- [x] permits use only of identities user has access to
+- [x] logs requesting user and identity on each use

@@ -1,0 +1,17 @@
+aclocal.m4
+autom4te.cache/
+build/
+config.log
+config.status
+configure
+depcomp
+.deps
+dist/
+*.egg-info
+INSTALL
+install-sh
+Makefile
+Makefile.in
+missing
+*.o
+src/sshagentmux

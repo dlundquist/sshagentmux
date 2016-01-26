@@ -1,0 +1,29 @@
+ssh host->agent mux: enumerate identities
+
+agent mux->sshd user@tty: enumerate identities
+sshd user@tty->agent mux: identities answer
+
+agent mux->authorization proxy: enumerate identities
+authorization proxy->ssh-agent: enumerate identities
+ssh-agent->authorization proxy: identities answer
+note right of authorization proxy: filter identities
+authorization proxy->agent mux: identities answer
+note right of agent mux: combine identities answers
+
+agent mux->ssh host: identities answer
+
+
+ssh host->agent mux: sign request
+
+alt user identity
+    agent mux->sshd user@tty: sign request
+    sshd user@tty->agent mux: signed answer
+else shared admin identity
+    agent mux->authorization proxy: sign request
+    authorization proxy->ssh-agent: sign request
+    note right of authorization proxy: verify authorization
+    ssh-agent->authorization proxy: signed answer
+    authorization proxy->agent mux: signed answer
+end
+
+agent mux->ssh host: signed answer
