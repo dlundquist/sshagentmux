@@ -22,6 +22,7 @@ import threading
 
 LOG = logging.getLogger(__name__)
 
+
 class UpstreamSocketThread(threading.Thread):
     SSH_AGENT_FAILURE = bytearray(struct.pack('> I B', 1, 5))
     timeout = 30
@@ -62,9 +63,8 @@ class UpstreamSocketThread(threading.Thread):
                     response_msg = self._recv_msg()
                 except socket.error, msg:
                     LOG.error("upstream agent error: %s", msg)
-                    LOG.warning("upstream agent error: message didn't receive a response:")
                     for chunk in self._hex_dump_chunks(request_msg):
-                        LOG.warning("upstream agent error: %s" % chunk)
+                        LOG.warning("upstream agent request: %s" % chunk)
                     self._reconnect()
                 else:
                     response_queue.put(response_msg)
@@ -74,7 +74,7 @@ class UpstreamSocketThread(threading.Thread):
 
     def _hex_dump_chunks(self, msg):
         for i in range(0, len(msg), 16):
-            yield " ".join("{:02x}".format(c) for c in msg[i:i+16])
+            yield " ".join("{:02x}".format(c) for c in msg[i:i + 16])
 
     def _reconnect(self):
         if self._sock is not None:
