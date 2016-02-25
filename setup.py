@@ -18,15 +18,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='sshauthmux',
+    name='sshagentmux',
     version='0.0.1',
     packages=find_packages(),
     license='Apache2',
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'authorization_proxy = sshauthmux.authorization_proxy:main',
-            'sshagentmux = sshauthmux.ssh_agent_mux:main'
+            'authorization_proxy = sshagentmux.authorization_proxy:main',
+            'sshagentmux = sshagentmux.ssh_agent_mux:main'
         ],
     },
     classifiers=[

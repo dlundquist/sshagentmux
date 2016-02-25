@@ -23,9 +23,9 @@ import struct
 import sys
 import tempfile
 
-from sshauthmux.base_agent_request import BaseAgentRequestHandler
-from sshauthmux.upstream_socket_thread import UpstreamSocketThread
-from sshauthmux.util import daemonize, setup_logging
+from sshagentmux.base_agent_request import BaseAgentRequestHandler
+from sshagentmux.upstream_socket_thread import UpstreamSocketThread
+from sshagentmux.util import daemonize, setup_logging
 
 LOG = logging.getLogger(__name__)
 
@@ -170,9 +170,9 @@ def main():
     level = logging.INFO
     if args.debug:
         level = logging.DEBUG
-    setup_logging("sshauthmux", level)
+    setup_logging("sshagentmux", level)
 
-    LOG.info("Starting sshauthmux")
+    LOG.info("Starting sshagentmux")
 
     # use specified socket if SSH_AUTH_SOCK is not present in environment
     sock_path = args.socket
@@ -190,7 +190,7 @@ def main():
         # Using a pipe for compatibility with OpenBSD
         ready_pipein, ready_pipeout = multiprocessing.Pipe()
         daemonize(target=start_agent_mux,
-                  stderr=os.path.expanduser('~/.sshauthmux.log'),
+                  stderr=os.path.expanduser('~/.sshagentmux.log'),
                   args=(ready_pipeout, parent_pid, upstream_socket,
                         args.socket))
 
