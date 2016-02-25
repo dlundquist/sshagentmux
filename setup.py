@@ -22,6 +22,11 @@ setup(
     version='0.0.1',
     packages=find_packages(),
     license='Apache2',
+    description = 'SSH Agent Authorization Proxy and Multiplexer',
+    author = 'Dustin Lundquist',
+    author_email = 'dustin@null-ptr.net',
+    url = 'https://github.com/blueboxgroup/sshagentmux',
+    download_url = 'https://github.com/blueboxgroup/sshagentmux/tarball/v0.0.1',
     zip_safe=False,
     entry_points={
         'console_scripts': [
@@ -34,7 +39,7 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
-        'License :: OSI Approved :: Apache License',
+        'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Programming Language :: Python :: 3',
