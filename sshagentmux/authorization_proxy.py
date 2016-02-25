@@ -29,9 +29,9 @@ import subprocess
 import sys
 import threading
 
-from sshauthmux.base_agent_request import BaseAgentRequestHandler
-from sshauthmux.upstream_socket_thread import UpstreamSocketThread
-from sshauthmux.util import daemonize, setup_logging
+from sshagentmux.base_agent_request import BaseAgentRequestHandler
+from sshagentmux.upstream_socket_thread import UpstreamSocketThread
+from sshagentmux.util import daemonize, setup_logging
 
 LOG = logging.getLogger(__name__)
 
