@@ -1,22 +1,23 @@
 SSH Agent Background
 ====================
 
-OpenSSH includes ssh-agent, a program which holds private keys used for public key authentication.
-When a ssh client authenticates with a remote server and SSH_AUTH_SOCK is set,
-the client will connect to the agent's authentication socket and enumerate the
-identities loaded into the agent. It then offers these identities to the remote
-host and if there is a matching identity on the remote host (in
-~/.ssh/authorized_keys) the remote host will reply with a challenge for that
-identity. The client then sends that challenge to the agent and the agent
-returns the challenge signed with the private key of the identity. The client
-then sends this signed challenge to the remote host, thereby proving it has
-access to the identity. In the case of RSA key authentication, the remote host
-verifies the signed challenge by decrypting it the public key thereby proving
-the client had use of the private key. Other identity types work similarly.
+OpenSSH includes ssh-agent, a program which holds private keys used for public
+key authentication. When a ssh client authenticates with a remote server and
+SSH_AUTH_SOCK is set, the client will connect to the agent's authentication
+socket and enumerate the identities loaded into the agent. It then offers these
+identities to the remote host and if there is a matching identity on the remote
+host (in ~/.ssh/authorized_keys) the remote host will reply with a challenge
+for that identity. The client then sends that challenge to the agent and the
+agent returns the challenge signed with the private key of the identity. The
+client then sends this signed challenge to the remote host, thereby proving it
+has access to the identity. In the case of RSA key authentication, the remote
+host verifies the signed challenge by decrypting it the public key thereby
+proving the client had use of the private key. Other identity types work
+similarly.
 
-The ssh client enables forwarding the agent connection to remote hosts, allowing
-a user to login to a third host using the identities stored on their local machine.
-This forwarding process can be repeated as necessary.
+The ssh client enables forwarding the agent connection to remote hosts,
+allowing a user to login to a third host using the identities stored on their
+local machine. This forwarding process can be repeated as necessary.
 
 We can use this framework to allow groups of local users to use identities
 stored in one restricted user account. This allows a teams to share a common
@@ -26,7 +27,7 @@ credentials, thus providing a single point to grant and revoke access.
 Here is a diagram of a normal authentication sequence:
 ![sequence diagram of a normal authentication sequence](docs/sequence_diagram.png)
 
-The authorization proxy and ssh-agent are running as a seperate user which has
+The authorization proxy and ssh-agent are running as a separate user which has
 the shared authentication credentials.
 
 Agent Multiplexer
